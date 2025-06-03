@@ -70,7 +70,7 @@ The relative speedups show Prefetch and Mem Advise reduces transfer time by over
 
 ### Screenshots of Program Output ###
 #### Version 0: Using C to implement 1D Convolution
-![Version 0 Output](mc01/images/Pasted image 20250603224928.png)
+![Version 0 Output](images/Pasted image 20250603224928.png)
 
 #### Version 1: Unified Memory Version of 1D Convolution
 ![Version 1 Output](images/Pasted image 20250603225021.png)
