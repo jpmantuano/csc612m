@@ -70,16 +70,16 @@ The relative speedups show Prefetch and Mem Advise reduces transfer time by over
 
 ### Screenshots of Program Output ###
 #### Version 0: Using C to implement 1D Convolution
-![Version 0 Output](images/Pasted image 20250603224928.png)
+![Version 0 Output](images/image_20250603224928.png)
 
 #### Version 1: Unified Memory Version of 1D Convolution
-![Version 1 Output](images/Pasted image 20250603225021.png)
+![Version 1 Output](images/image_20250603225021.png)
 
 #### Version 2: CUDA with Prefetching data and Memory Advice
-![Version 2 Output](images/Pasted image 20250603225100.png)
+![Version 2 Output](images/image_20250603225100.png)
 
 #### Version 3: Data Initialization with CUDA Kernel
-![Version 3 Output](images/Pasted image 20250603225124.png)
+![Version 3 Output](images/image_20250603225124.png)
 
 #### Version 4: Old method of data transfer
-![Version 4 Output](images/Pasted image 20250603225149.png)
+![Version 4 Output](images/image_20250603225149.png)
