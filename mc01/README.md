@@ -1,6 +1,8 @@
 ### Explaining Multiple Data Transfer Method ###
 How data moves between your computer’s main memory (the CPU) and the graphics card (the GPU). Below are four data transfer methods between CPU and GPU.
 
+[Watch the explanation video on YouTube](https://www.youtube.com)
+
 1.) Unified memory
 2.) Prefetching of data with memory advice
 3.) Data initialization as a CUDA kernel
