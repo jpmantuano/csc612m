@@ -14,7 +14,9 @@
 |                        | ASM      | 0.261513        | ~3.93x       | PASS        |
 |                        | AVX2-XMM | 0.133794        | ~7.67x       | FAIL        |
 |                        | AVX2-YMM | 0.130529        | ~7.87x       | FAIL        |
-*This table is taken from the output file of the C program.*
+
+
+*This table is taken from the [stencil_results.txt] output file of the C program.*
 
 ---
 ### Performance Analysis
