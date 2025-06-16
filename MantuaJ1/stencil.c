@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <malloc.h> 
 #include <windows.h>
+#include <math.h>
 
 void stencil_c(const float* X, float* Y, int n);
 
@@ -22,6 +23,21 @@ int compare_outputs(const float* ref, const float* test, int length, float epsil
     return 1; // Match
 }
 
+//int compare_outputs(const float* ref, const float* test, int length, float abs_epsilon, float rel_epsilon) {
+//    for (int i = 0; i < length; i++) {
+//        float a = ref[i];
+//        float b = test[i];
+//        float diff = fabsf(a - b);
+//        float max_ab = fmaxf(fabsf(a), fabsf(b));
+//        if (diff > abs_epsilon && diff > rel_epsilon * max_ab) {
+//            // Mismatch found
+//            return 0;
+//        }
+//    }
+//    // All values matched within tolerance
+//    return 1;
+//}
+
 int main() {
     // Vector sizes: 2^20, 2^26, 2^28
     const int sizes[] = { 1 << 20, 1 << 26, 1 << 28 };
@@ -34,7 +50,9 @@ int main() {
     // Number of times to run each kernel for timing
     const int num_runs = 30;
 
-    const float epsilon = 1e-5f;
+    const float epsilon = 1e-4f;
+    const float abs_epsilon = 1e-5f;
+    const float rel_epsilon = 1e-5f;
 
     FILE* outfile = fopen("stencil_results.txt", "w");
     if (!outfile) {

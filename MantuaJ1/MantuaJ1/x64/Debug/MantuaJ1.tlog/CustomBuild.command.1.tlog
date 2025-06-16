@@ -1,6 +1,0 @@
-^C:\DEVELOPMENT\REPOSITORY\CSC612M\MANTUAJ1\STENCIL_ASM.ASM
-C:\Development\Tools\NASM\nasm.exe -f win64 stencil_asm.asm
-^C:\DEVELOPMENT\REPOSITORY\CSC612M\MANTUAJ1\STENCIL_AVX2_XMM.ASM
-C:\Development\Tools\NASM\nasm.exe -f win64 stencil_avx2_xmm.asm
-^C:\DEVELOPMENT\REPOSITORY\CSC612M\MANTUAJ1\STENCIL_AVX2_YMM.ASM
-C:\Development\Tools\NASM\nasm.exe -f win64 stencil_avx2_ymm.asm
