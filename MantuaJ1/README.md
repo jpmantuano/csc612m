@@ -1,4 +1,79 @@
-## Comparative Performance Analysis of 1D Stencil Kernels
+## Overview
+
+This project implements and benchmarks four versions of a 1D 7-point stencil operation:
+
+- **C Kernel**: Plain C implementation
+- **ASM Kernel**: Hand-tuned scalar x86-64 assembly
+- **AVX2-XMM Kernel**: Vectorized with 128-bit AVX2 (XMM, 4 floats at a time)
+- **AVX2-YMM Kernel**: Vectorized with 256-bit AVX2 (YMM, 8 floats at a time)
+
+Each kernel computes the sum `Y[i] = X[i-3] + X[i-2] + X[i-1] + X[i] + X[i+1] + X[i+2] + X[i+3]` for all valid `i`.
+
+Primary vector size inputs: 2^20, 2^26, 2^28
+
+---
+### Performance Analysis
+
+- **ASM kernel** Consistently achieves about 4x speedup across all dataset sizes compared to the C reference implementation by leveraging hand-optimized assembly code that reduces overhead.
+- **AVX2-XMM and AVX2-YMM kernels**. These vectorized kernels show roughly 7.5x to 8.5x speedup over the C baseline, demonstrating the power of SIMD instructions to process multiple data points concurrently. However, initial tries fail the correctness checks for all dataset sizes, indicating implementation bugs (research shows it could be the memory alignment, or vector load/store offsets).
+- The AVX2 kernels' failures highlight the complexity of vectorized code and the importance of correct memory alignment, pointer arithmetic, and boundary handling.
+- The C kernel, while slower, produces correct results and serves as the baseline for verification.
+- The ASM kernel is both fast and correct on the first try, showing the benefit of careful manual optimization and easier implmentation.
+
+---
+### Problems Encountered and Solutions
+
+- **Correctness Failures in AVX2 Kernels:**
+##### **1. Boundary Handling**
+
+- **Problem**: Vectorized loops cannot process the first/last 3 elements due to stencil access; these must be handled separately.
+- **Solution**: Used scalar code for the boundary elements, and vector code for the main body. For the YMM/XMM kernels, a scalar tail loop ensures all outputs are written, even if the total is not a multiple of the vector width.
+
+
+##### **2. NASM Operand Restrictions**
+
+- **Problem**: NASM does not allow `addss xmm0, dword [mem]`; only register operands are valid.
+- **Solution**: Always load memory operands into a register before arithmetic:
+
+```nasm
+movss xmm1, dword [mem]
+addss xmm0, xmm1
+```
+
+
+##### **3. Register Size Mismatches**
+
+- **Problem**: Mixing 32-bit and 64-bit registers in address calculations or moves (e.g., `mov rbx, eax`) caused build errors.
+- **Solution**: Used consistent register sizes for pointers and counters.
+
+
+---
+## Unique Methodology and AHA Moments
+
+- **Manual Assembly Optimization vs Compiler:**
+The ASM kernel's success demonstrated that assembly can outperform compiler-generated code by carefully managing registers and instructions.
+
+- **Vectorization Complexity:**
+The AVX2 kernels’ failures highligthed the subtlety of SIMD programming: performance gains come with increased complexity in memory access patterns and alignment requirements, which are easy to overlook and cause silent correctness bugs.
+
+- **Importance of Incremental Testing:**
+Testing kernels on smaller vector sizes with detailed output helped isolate errors in pointer arithmetic and memory offsets before scaling to large inputs.
+
+- **Performance vs Correctness Tradeoff:**
+The project highlighted that raw speed is achievable but comes with more complicated implementation to ensure correctness.
+
+---
+## Summary
+
+This project illustrates the tradeoffs in optimizing a 1D stencil computation:
+
+- **C code** is reliable but slower.
+- **ASM code** offers a balance of speed, correctness and easier more straight forward implementation.
+- **AVX2 vectorized code** promises the highest speed but requires more attention to detail to ensure correctness. Careful handling of boundary elements is needed to ensure correctness of the output.
+
+
+
+## Data Collected
 
 ### Runtime Average Across 30 Kernel Runs Before Handling Boundary Elements
 
@@ -70,66 +145,3 @@
 
 
 *This table is taken from the [stencil_results_2.txt] output file of the C program.*
-
-
-
-
----
-### Performance Analysis
-
-- **ASM kernel** Consistently achieves about 4x speedup across all dataset sizes compared to the C reference implementation by leveraging hand-optimized assembly code that reduces overhead.
-- **AVX2-XMM and AVX2-YMM kernels**. These vectorized kernels show roughly 7.5x to 8.5x speedup over the C baseline, demonstrating the power of SIMD instructions to process multiple data points concurrently. However, initial tries fail the correctness checks for all dataset sizes, indicating implementation bugs (research shows it could be the memory alignment, or vector load/store offsets).
-- The AVX2 kernels' failures highlight the complexity of vectorized code and the importance of correct memory alignment, pointer arithmetic, and boundary handling.
-- The C kernel, while slower, produces correct results and serves as the baseline for verification.
-- The ASM kernel is both fast and correct on the first try, showing the benefit of careful manual optimization and easier implmentation.
-
----
-### Problems Encountered and Solutions
-
-- **Correctness Failures in AVX2 Kernels:**
-##### **1. Boundary Handling**
-
-- **Problem**: Vectorized loops cannot process the first/last 3 elements due to stencil access; these must be handled separately.
-- **Solution**: Used scalar code for the boundary elements, and vector code for the main body. For the YMM/XMM kernels, a scalar tail loop ensures all outputs are written, even if the total is not a multiple of the vector width.
-
-
-##### **2. NASM Operand Restrictions**
-
-- **Problem**: NASM does not allow `addss xmm0, dword [mem]`; only register operands are valid.
-- **Solution**: Always load memory operands into a register before arithmetic:
-
-```nasm
-movss xmm1, dword [mem]
-addss xmm0, xmm1
-```
-
-
-##### **3. Register Size Mismatches**
-
-- **Problem**: Mixing 32-bit and 64-bit registers in address calculations or moves (e.g., `mov rbx, eax`) caused build errors.
-- **Solution**: Used consistent register sizes for pointers and counters.
-
-
----
-## Unique Methodology and AHA Moments
-
-- **Manual Assembly Optimization vs Compiler:**
-The ASM kernel's success demonstrated that assembly can outperform compiler-generated code by carefully managing registers and instructions.
-
-- **Vectorization Complexity:**
-The AVX2 kernels’ failures highligthed the subtlety of SIMD programming: performance gains come with increased complexity in memory access patterns and alignment requirements, which are easy to overlook and cause silent correctness bugs.
-
-- **Importance of Incremental Testing:**
-Testing kernels on smaller vector sizes with detailed output helped isolate errors in pointer arithmetic and memory offsets before scaling to large inputs.
-
-- **Performance vs Correctness Tradeoff:**
-The project highlighted that raw speed is achievable but comes with more complicated implementation to ensure correctness.
-
----
-## Summary
-
-This project illustrates the tradeoffs in optimizing a 1D stencil computation:
-
-- **C code** is reliable but slower.
-- **ASM code** offers a balance of speed, correctness and easier more straight forward implementation.
-- **AVX2 vectorized code** promises the highest speed but requires more attention to detail to ensure correctness. Careful handling of boundary elements is needed to ensure correctness of the output.
