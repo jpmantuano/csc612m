@@ -12,7 +12,7 @@ Each kernel computes the sum `Y[i] = X[i-3] + X[i-2] + X[i-1] + X[i] + X[i+1] + 
 Primary vector size inputs: 2^20, 2^26, 2^28
 
 ---
-### Performance Analysis
+## Performance Analysis
 
 - **ASM kernel** Consistently achieves about 4x speedup across all dataset sizes compared to the C reference implementation by leveraging hand-optimized assembly code that reduces overhead.
 - **AVX2-XMM and AVX2-YMM kernels**. These vectorized kernels show roughly 7.5x to 8.5x speedup over the C baseline, demonstrating the power of SIMD instructions to process multiple data points concurrently. However, initial tries fail the correctness checks for all dataset sizes, indicating implementation bugs (research shows it could be the memory alignment, or vector load/store offsets).
@@ -21,7 +21,7 @@ Primary vector size inputs: 2^20, 2^26, 2^28
 - The ASM kernel is both fast and correct on the first try, showing the benefit of careful manual optimization and easier implmentation.
 
 ---
-### Problems Encountered and Solutions
+## Problems Encountered and Solutions
 
 - **Correctness Failures in AVX2 Kernels:**
 ##### **1. Boundary Handling**
