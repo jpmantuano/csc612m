@@ -164,7 +164,6 @@ This project illustrates the tradeoffs in optimizing a 1D stencil computation:
 | 268,435,456 | ASM kernel | 0.257607 |
 | 268,435,456 | AVX2-XMM kernel | 0.139365 |
 | 268,435,456 | AVX2-YMM kernel | 0.128493 |
-| 536,870,912 | stencil_asm | - |
 | 536,870,912 | C kernel | 2.076522 |
 | 536,870,912 | ASM kernel | 0.529830 |
 | 536,870,912 | AVX2-XMM kernel | 0.268416 |
