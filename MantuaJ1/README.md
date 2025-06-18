@@ -10,7 +10,10 @@ This project implements and benchmarks four versions of a 1D 7-point stencil ope
 Each kernel computes the sum `Y[i] = X[i-3] + X[i-2] + X[i-1] + X[i] + X[i+1] + X[i+2] + X[i+3]` for all valid `i`.
 
 Primary vector size inputs: 2^20, 2^26, 2^28
-Other vector size inputs: 2^29, 2^30  *Added additional input elements after making sure that the program codes are functionally correct.
+
+Other vector size inputs: 2^29, 2^30  
+
+*Added additional input elements after making sure that the program codes are functionally correct.
 
 ---
 ## Performance Analysis
