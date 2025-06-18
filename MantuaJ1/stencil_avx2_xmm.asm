@@ -3,8 +3,11 @@ section .text
 global stencil_avx2_xmm
 
 stencil_avx2_xmm:
-    push rbp
-    mov rbp, rsp
+    ; push rbp
+    ; mov rbp, rsp
+
+    push rsi
+    push rdi
 
     mov rsi, rcx        ; rsi = X pointer
     mov rdi, rdx        ; rdi = Y pointer
@@ -73,5 +76,7 @@ stencil_avx2_xmm:
     jnz .tail_loop
 
 .done:
-    pop rbp
+    ; pop rbp
+    pop rdi
+    pop rsi
     ret

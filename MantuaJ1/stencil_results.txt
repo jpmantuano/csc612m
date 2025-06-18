@@ -1,84 +1,140 @@
 === Vector size: 1048576 ===
 stencil_asm correctness: PASS
-stencil_avx2_xmm correctness: FAIL
-stencil_avx2_ymm correctness: FAIL
+stencil_avx2_xmm correctness: PASS
+stencil_avx2_ymm correctness: PASS
 --- C kernel ---
-Average runtime: 0.004020 seconds (over 30 runs)
+Average runtime: 0.004066 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
 Output Y (last 10 elements): 441.0 448.0 455.0 462.0 469.0 476.0 483.0 490.0 497.0 504.0 
 
 --- ASM kernel ---
-Average runtime: 0.000985 seconds (over 30 runs)
+Average runtime: 0.001013 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
 Output Y (last 10 elements): 441.0 448.0 455.0 462.0 469.0 476.0 483.0 490.0 497.0 504.0 
 
 --- AVX2-XMM kernel ---
-Average runtime: 0.000480 seconds (over 30 runs)
+Average runtime: 0.000514 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
-Output Y (last 10 elements): 441.0 448.0 455.0 462.0 469.0 476.0 483.0 490.0 -431602080.0 -431602080.0 
+Output Y (last 10 elements): 441.0 448.0 455.0 462.0 469.0 476.0 483.0 490.0 497.0 504.0 
 
 --- AVX2-YMM kernel ---
-Average runtime: 0.000428 seconds (over 30 runs)
+Average runtime: 0.000552 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
-Output Y (last 10 elements): 441.0 448.0 455.0 462.0 469.0 476.0 483.0 490.0 -431602080.0 -431602080.0 
+Output Y (last 10 elements): 441.0 448.0 455.0 462.0 469.0 476.0 483.0 490.0 497.0 504.0 
 
 === Vector size: 67108864 ===
 stencil_asm correctness: PASS
-stencil_avx2_xmm correctness: FAIL
-stencil_avx2_ymm correctness: FAIL
+stencil_avx2_xmm correctness: PASS
+stencil_avx2_ymm correctness: PASS
 --- C kernel ---
-Average runtime: 0.259665 seconds (over 30 runs)
+Average runtime: 0.262415 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
 Output Y (last 10 elements): 357.0 364.0 371.0 378.0 385.0 392.0 399.0 406.0 413.0 420.0 
 
 --- ASM kernel ---
-Average runtime: 0.065033 seconds (over 30 runs)
+Average runtime: 0.067772 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
 Output Y (last 10 elements): 357.0 364.0 371.0 378.0 385.0 392.0 399.0 406.0 413.0 420.0 
 
 --- AVX2-XMM kernel ---
-Average runtime: 0.034677 seconds (over 30 runs)
+Average runtime: 0.034620 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
-Output Y (last 10 elements): 357.0 364.0 371.0 378.0 385.0 392.0 399.0 406.0 -431602080.0 -431602080.0 
+Output Y (last 10 elements): 357.0 364.0 371.0 378.0 385.0 392.0 399.0 406.0 413.0 420.0 
 
 --- AVX2-YMM kernel ---
-Average runtime: 0.033348 seconds (over 30 runs)
+Average runtime: 0.033221 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
-Output Y (last 10 elements): 357.0 364.0 371.0 378.0 385.0 392.0 399.0 406.0 -431602080.0 -431602080.0 
+Output Y (last 10 elements): 357.0 364.0 371.0 378.0 385.0 392.0 399.0 406.0 413.0 420.0 
 
 === Vector size: 268435456 ===
 stencil_asm correctness: PASS
-stencil_avx2_xmm correctness: FAIL
-stencil_avx2_ymm correctness: FAIL
+stencil_avx2_xmm correctness: PASS
+stencil_avx2_ymm correctness: PASS
 --- C kernel ---
-Average runtime: 1.026571 seconds (over 30 runs)
+Average runtime: 1.033403 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
 Output Y (last 10 elements): 301.0 308.0 315.0 322.0 329.0 336.0 343.0 350.0 357.0 364.0 
 
 --- ASM kernel ---
-Average runtime: 0.261513 seconds (over 30 runs)
+Average runtime: 0.264865 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
 Output Y (last 10 elements): 301.0 308.0 315.0 322.0 329.0 336.0 343.0 350.0 357.0 364.0 
 
 --- AVX2-XMM kernel ---
-Average runtime: 0.133794 seconds (over 30 runs)
+Average runtime: 0.141890 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
-Output Y (last 10 elements): 301.0 308.0 315.0 322.0 329.0 336.0 343.0 350.0 -431602080.0 -431602080.0 
+Output Y (last 10 elements): 301.0 308.0 315.0 322.0 329.0 336.0 343.0 350.0 357.0 364.0 
 
 --- AVX2-YMM kernel ---
-Average runtime: 0.130529 seconds (over 30 runs)
+Average runtime: 0.135674 seconds (over 30 runs)
 Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
 Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
-Output Y (last 10 elements): 301.0 308.0 315.0 322.0 329.0 336.0 343.0 350.0 -431602080.0 -431602080.0 
+Output Y (last 10 elements): 301.0 308.0 315.0 322.0 329.0 336.0 343.0 350.0 357.0 364.0 
+
+=== Vector size: 536870912 ===
+stencil_asm correctness: PASS
+stencil_avx2_xmm correctness: PASS
+stencil_avx2_ymm correctness: PASS
+--- C kernel ---
+Average runtime: 2.069390 seconds (over 30 runs)
+Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
+Output Y (last 10 elements): 393.0 300.0 207.0 114.0 21.0 28.0 35.0 42.0 49.0 56.0 
+
+--- ASM kernel ---
+Average runtime: 0.538235 seconds (over 30 runs)
+Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
+Output Y (last 10 elements): 393.0 300.0 207.0 114.0 21.0 28.0 35.0 42.0 49.0 56.0 
+
+--- AVX2-XMM kernel ---
+Average runtime: 0.270511 seconds (over 30 runs)
+Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
+Output Y (last 10 elements): 393.0 300.0 207.0 114.0 21.0 28.0 35.0 42.0 49.0 56.0 
+
+--- AVX2-YMM kernel ---
+Average runtime: 0.270568 seconds (over 30 runs)
+Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
+Output Y (last 10 elements): 393.0 300.0 207.0 114.0 21.0 28.0 35.0 42.0 49.0 56.0 
+
+=== Vector size: 1073741824 ===
+stencil_asm correctness: PASS
+stencil_avx2_xmm correctness: PASS
+stencil_avx2_ymm correctness: PASS
+--- C kernel ---
+Average runtime: 4.249408 seconds (over 30 runs)
+Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
+Output Y (last 10 elements): 77.0 84.0 91.0 98.0 105.0 112.0 119.0 126.0 133.0 140.0 
+
+--- ASM kernel ---
+Average runtime: 1.171465 seconds (over 30 runs)
+Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
+Output Y (last 10 elements): 77.0 84.0 91.0 98.0 105.0 112.0 119.0 126.0 133.0 140.0 
+
+--- AVX2-XMM kernel ---
+Average runtime: 0.578626 seconds (over 30 runs)
+Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
+Output Y (last 10 elements): 77.0 84.0 91.0 98.0 105.0 112.0 119.0 126.0 133.0 140.0 
+
+--- AVX2-YMM kernel ---
+Average runtime: 0.541823 seconds (over 30 runs)
+Input X (first 10 elements): 0.0 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 
+Output Y (first 10 elements): 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 
+Output Y (last 10 elements): 77.0 84.0 91.0 98.0 105.0 112.0 119.0 126.0 133.0 140.0 
 

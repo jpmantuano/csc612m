@@ -23,24 +23,9 @@ int compare_outputs(const float* ref, const float* test, int length, float epsil
     return 1; // Match
 }
 
-//int compare_outputs(const float* ref, const float* test, int length, float abs_epsilon, float rel_epsilon) {
-//    for (int i = 0; i < length; i++) {
-//        float a = ref[i];
-//        float b = test[i];
-//        float diff = fabsf(a - b);
-//        float max_ab = fmaxf(fabsf(a), fabsf(b));
-//        if (diff > abs_epsilon && diff > rel_epsilon * max_ab) {
-//            // Mismatch found
-//            return 0;
-//        }
-//    }
-//    // All values matched within tolerance
-//    return 1;
-//}
-
 int main() {
     // Vector sizes: 2^20, 2^26, 2^28
-    const int sizes[] = { 1 << 20, 1 << 26, 1 << 28 };
+    const int sizes[] = { 1 << 20, 1 << 26, 1 << 28, 1 << 29, 1 << 30};
 
     // Kernel version names (for reference)
     const char* versions[] = { "C", "ASM", "AVX2-XMM", "AVX2-YMM" };
@@ -51,8 +36,8 @@ int main() {
     const int num_runs = 30;
 
     const float epsilon = 1e-4f;
-    const float abs_epsilon = 1e-5f;
-    const float rel_epsilon = 1e-5f;
+    //const float abs_epsilon = 1e-5f;
+    //const float rel_epsilon = 1e-5f;
 
     FILE* outfile = fopen("stencil_results.txt", "w");
     if (!outfile) {
@@ -60,12 +45,10 @@ int main() {
         return 1;
     }
 
-    for (int s = 0; s < 3; s++) {
+    for (int s = 0; s < 5; s++) {
         int n = sizes[s];
 
-        //// Allocate aligned memory
-        //float* X = (float*)_aligned_malloc(n * sizeof(float), 32);
-        //float* Y = (float*)_aligned_malloc((n - 6) * sizeof(float), 32);
+        printf("\n=== Running for vector size: %d ===\n", n);
 
         // Allocate buffers
         float* X = (float*)_aligned_malloc(n * sizeof(float), 32);
@@ -74,15 +57,9 @@ int main() {
         float* Y_avx2_xmm = (float*)_aligned_malloc((n - 6) * sizeof(float), 32);
         float* Y_avx2_ymm = (float*)_aligned_malloc((n - 6) * sizeof(float), 32);
 
-        //if (!X || !Y) {
-        //    printf("Memory allocation failed for size %d\n", n);
-        //    if (X) _aligned_free(X);
-        //    if (Y) _aligned_free(Y);
-        //    return 1;
-        //}
-
         if (!X || !Y_c || !Y_asm || !Y_avx2_xmm || !Y_avx2_ymm) {
             fprintf(outfile, "Memory allocation failed for size %d\n", n);
+            printf("Memory allocation failed for size %d\n", n);
             goto cleanup;
         }
 
@@ -94,17 +71,22 @@ int main() {
         fprintf(outfile, "=== Vector size: %d ===\n", n);
 
         // Run C reference kernel once
+        printf("  Running C reference kernel...\n");
         stencil_c(X, Y_c, n);
 
         // Run each assembly kernel once and check correctness
+        printf("  Running stencil_asm...\n");
         stencil_asm(X, Y_asm, n);
+
         fprintf(outfile, "stencil_asm correctness: %s\n",
             compare_outputs(Y_c, Y_asm, n - 6, epsilon) ? "PASS" : "FAIL");
 
+        printf("  Running stencil_avx2_xmm...\n");
         stencil_avx2_xmm(X, Y_avx2_xmm, n);
         fprintf(outfile, "stencil_avx2_xmm correctness: %s\n",
             compare_outputs(Y_c, Y_avx2_xmm, n - 6, epsilon) ? "PASS" : "FAIL");
 
+        printf("  Running stencil_avx2_ymm...\n");
         stencil_avx2_ymm(X, Y_avx2_ymm, n);
         fprintf(outfile, "stencil_avx2_ymm correctness: %s\n",
             compare_outputs(Y_c, Y_avx2_ymm, n - 6, epsilon) ? "PASS" : "FAIL");
@@ -119,6 +101,8 @@ int main() {
             else if (v == 1) Y = Y_asm;
             else if (v == 2) Y = Y_avx2_xmm;
             else if (v == 3) Y = Y_avx2_ymm;
+
+            printf("    Timing %s kernel...\n", versions[v]);
 
             // Warm-up run (optional)
             funcs[v](X, Y, n);
@@ -135,12 +119,6 @@ int main() {
 
             fprintf(outfile, "--- %s kernel ---\n", versions[v]);
             fprintf(outfile, "Average runtime: %.6f seconds (over %d runs)\n", elapsed_sec / num_runs, num_runs);
-
-            //// Print all info as one cohesive block per run
-            //printf("=== Run Summary ===\n");
-            //printf("Vector size: %d\n", n);
-            //printf("Kernel version: %s\n", versions[v]);
-            //printf("Average runtime: %.6f seconds (over %d runs)\n", elapsed_sec / num_runs, num_runs);
 
             // Print first 10 elements of input X
             fprintf(outfile, "Input X (first 10 elements): ");

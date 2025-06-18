@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Development\\Repository\\csc612m\\MantuaJ1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|solutionrelative:stencil.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_avx2_ymm.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|solutionrelative:stencil_avx2_ymm.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_avx2_xmm.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|solutionrelative:stencil_avx2_xmm.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_avx2_ymm.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|solutionrelative:stencil_avx2_ymm.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_asm.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|solutionrelative:stencil_asm.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|solutionrelative:stencil.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_c.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|solutionrelative:stencil_c.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_asm.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{552EF09F-328C-4D1E-B948-5B46E4064073}|MantuaJ1.vcxproj|solutionrelative:stencil_asm.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +30,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "stencil_c.c",
               "DocumentMoniker": "C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_c.c",
               "RelativeDocumentMoniker": "stencil_c.c",
@@ -42,17 +42,18 @@
               "RelativeToolTip": "stencil_c.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-06-15T11:57:47.843Z"
+              "WhenOpened": "2025-06-15T11:57:47.843Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "stencil_avx2_ymm.asm",
               "DocumentMoniker": "C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_avx2_ymm.asm",
               "RelativeDocumentMoniker": "stencil_avx2_ymm.asm",
               "ToolTip": "C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_avx2_ymm.asm",
               "RelativeToolTip": "stencil_avx2_ymm.asm",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-06-15T11:22:06.45Z",
               "EditorCaption": ""
@@ -65,32 +66,33 @@
               "RelativeDocumentMoniker": "stencil_avx2_xmm.asm",
               "ToolTip": "C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_avx2_xmm.asm",
               "RelativeToolTip": "stencil_avx2_xmm.asm",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-06-15T11:09:24.806Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "stencil_asm.asm",
               "DocumentMoniker": "C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_asm.asm",
               "RelativeDocumentMoniker": "stencil_asm.asm",
               "ToolTip": "C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil_asm.asm",
               "RelativeToolTip": "stencil_asm.asm",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-06-15T08:30:40.455Z"
+              "WhenOpened": "2025-06-15T08:30:40.455Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "stencil.c",
               "DocumentMoniker": "C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil.c",
               "RelativeDocumentMoniker": "stencil.c",
               "ToolTip": "C:\\Development\\Repository\\csc612m\\MantuaJ1\\stencil.c",
               "RelativeToolTip": "stencil.c",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACkAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAcwIkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-06-15T09:08:11.449Z",
               "EditorCaption": ""

@@ -2,18 +2,24 @@ section .text
 global stencil_asm
 
 stencil_asm:
-    push rbp
-    mov rbp, rsp
+   ; push rbp
+   ; mov rbp, rsp
+
+    push rsi
+    push rdi
 
     mov rsi, rcx        ; rsi = X pointer
     mov rdi, rdx        ; rdi = Y pointer
     mov ecx, r8d        ; ecx = n (32-bit)
 
-    xor eax, eax
+    ; xor eax, eax
     sub ecx, 6          ; n - 6 iterations
     lea r8, [rsi + 12]  ; r8 = X + 3*4 bytes
 
 .loop:
+    cmp ecx, 0
+    jle .done
+
     movss xmm0, dword [r8 - 12]  ; X[i-3]
     addss xmm0, dword [r8 - 8]   ; X[i-2]
     addss xmm0, dword [r8 - 4]   ; X[i-1]
@@ -30,5 +36,8 @@ stencil_asm:
     dec ecx
     jnz .loop
 
-    pop rbp
+.done
+    pop rdi
+    pop rsi
+    ; pop rbp
     ret

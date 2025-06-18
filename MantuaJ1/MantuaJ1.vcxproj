@@ -134,18 +134,27 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Development\Tools\NASM\nasm.exe -f win64 stencil_asm.asm</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stencil_asm.obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Development\Tools\NASM\nasm.exe -f win64 stencil_asm.asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stencil_asm.obj</Outputs>
     </CustomBuild>
     <CustomBuild Include="stencil_avx2_xmm.asm">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Development\Tools\NASM\nasm.exe -f win64 stencil_avx2_xmm.asm</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stencil_avx2_xmm.obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Development\Tools\NASM\nasm.exe -f win64 stencil_avx2_xmm.asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stencil_avx2_xmm.obj</Outputs>
     </CustomBuild>
     <CustomBuild Include="stencil_avx2_ymm.asm">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Development\Tools\NASM\nasm.exe -f win64 stencil_avx2_ymm.asm</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stencil_avx2_ymm.obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Development\Tools\NASM\nasm.exe -f win64 stencil_avx2_ymm.asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stencil_avx2_ymm.obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
