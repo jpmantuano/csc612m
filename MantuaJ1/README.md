@@ -13,7 +13,7 @@ Primary vector size inputs: 2^20, 2^26, 2^28
 
 Other vector size inputs: 2^29, 2^30  
 
-*Added additional input elements after making sure that the program codes are functionally correct.
+*Added additional input elements after making sure that the program codes are functionally correct.*
 
 ---
 ## Performance Analysis
