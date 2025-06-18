@@ -95,6 +95,8 @@ This project illustrates the tradeoffs in optimizing a 1D stencil computation:
 - **AVX2 vectorized code** promises the highest speed but requires more attention to detail to ensure correctness. Careful handling of boundary elements is needed to ensure correctness of the output.
 
 
+## Screenshots of Program Output ##
+![1D Stencil](program_console_run.png)
 
 ## Data Collected
 
