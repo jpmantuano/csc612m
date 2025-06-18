@@ -159,6 +159,9 @@ This project illustrates the tradeoffs in optimizing a 1D stencil computation:
 | 1,073,741,824 | 4.979233  | 1.043016   | 0.464241        | 0.397962        |
 
 
+*This table is taken from the [debug_runs.txt] output file of the C program.*
+
+
 ### Release Run Data
 
 | Vector Size   | C Kernel  | ASM Kernel | AVX2-XMM Kernel | AVX2-YMM Kernel |
@@ -169,3 +172,4 @@ This project illustrates the tradeoffs in optimizing a 1D stencil computation:
 | 536,870,912   | 0.276746  | 0.540162   | 0.276134        | 0.262354        |
 | 1,073,741,824 | 0.560119  | 1.127609   | 0.570195        | 0.549037        |
 
+*This table is taken from the [release_runs.txt] output file of the C program.*
