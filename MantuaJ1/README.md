@@ -46,6 +46,29 @@ addss xmm0, xmm1
 - **Problem**: Mixing 32-bit and 64-bit registers in address calculations or moves (e.g., `mov rbx, eax`) caused build errors.
 - **Solution**: Used consistent register sizes for pointers and counters.
 
+##### **4. Successful run in Debug but keeps failing in Release**
+- **Problem**: Crashes in Release mode caused by not saving/restoring callee-saved registers (rsi, rdi) and by breaking the required 16-byte stack alignment before using AVX/SSE instructions. Debug mode was more linient in these type of errors, but Release exposes these type of problems.
+- **Solution**: Properly saving registers and ensuring stack alignment in the assembly code resolved these problems.
+    Specifically using push/pop rsi and rdi. 
+  ```nasm
+    ; push rbp
+    ; mov rbp, rsp
+
+    push rsi
+    push rdi
+  
+      <main program code>
+  
+    ; pop rbp
+    pop rdi
+    pop rsi
+  ```
+    And revisiting the x64 Windows calling convention.
+  ```nasm
+    mov rsi, rcx        ; rsi = X pointer
+    mov rdi, rdx        ; rdi = Y pointer
+    mov ecx, r8d        ; ecx = n (number of elements, 32-bit)
+  ```
 
 ---
 ## Unique Methodology and AHA Moments
