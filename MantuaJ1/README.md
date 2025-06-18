@@ -46,6 +46,29 @@ addss xmm0, xmm1
 - **Problem**: Mixing 32-bit and 64-bit registers in address calculations or moves (e.g., `mov rbx, eax`) caused build errors.
 - **Solution**: Used consistent register sizes for pointers and counters.
 
+##### **4. Successful run in Debug but keeps failing in Release**
+- **Problem**: Crashes in Release mode caused by not saving/restoring callee-saved registers (rsi, rdi) and by breaking the required 16-byte stack alignment before using AVX/SSE instructions. Debug mode was more linient in these type of errors, but Release exposes these type of problems.
+- **Solution**: Properly saving registers and ensuring stack alignment in the assembly code resolved these problems.
+    Specifically using push/pop rsi and rdi. 
+  ```nasm
+    ; push rbp
+    ; mov rbp, rsp
+
+    push rsi
+    push rdi
+  
+      <main program code>
+  
+    ; pop rbp
+    pop rdi
+    pop rsi
+  ```
+    And revisiting the x64 Windows calling convention.
+  ```nasm
+    mov rsi, rcx        ; rsi = X pointer
+    mov rdi, rdx        ; rdi = Y pointer
+    mov ecx, r8d        ; ecx = n (number of elements, 32-bit)
+  ```
 
 ---
 ## Unique Methodology and AHA Moments
@@ -145,3 +168,31 @@ This project illustrates the tradeoffs in optimizing a 1D stencil computation:
 
 
 *This table is taken from the [stencil_results_2.txt] output file of the C program.*
+
+
+
+### Debug Run Data
+
+| Vector Size   | C Kernel  | ASM Kernel | AVX2-XMM Kernel | AVX2-YMM Kernel |
+|---------------|-----------|------------|-----------------|-----------------|
+| 1,048,576     | 0.004036  | 0.001003   | 0.000512        | 0.000495        |
+| 67,108,864    | 0.257649  | 0.064584   | 0.033518        | 0.031358        |
+| 268,435,456   | 1.031096  | 0.257607   | 0.139365        | 0.128493        |
+| 536,870,912   | 2.076522  | 0.529830   | 0.268416        | 0.255352        |
+| 1,073,741,824 | 4.979233  | 1.043016   | 0.464241        | 0.397962        |
+
+
+*This table is taken from the [debug_runs.txt] output file of the C program.*
+
+
+### Release Run Data
+
+| Vector Size   | C Kernel  | ASM Kernel | AVX2-XMM Kernel | AVX2-YMM Kernel |
+|---------------|-----------|------------|-----------------|-----------------|
+| 1,048,576     | 0.000595  | 0.001021   | 0.000579        | 0.000485        |
+| 67,108,864    | 0.034673  | 0.065069   | 0.033649        | 0.031830        |
+| 268,435,456   | 0.151681  | 0.261524   | 0.134162        | 0.128061        |
+| 536,870,912   | 0.276746  | 0.540162   | 0.276134        | 0.262354        |
+| 1,073,741,824 | 0.560119  | 1.127609   | 0.570195        | 0.549037        |
+
+*This table is taken from the [release_runs.txt] output file of the C program.*
